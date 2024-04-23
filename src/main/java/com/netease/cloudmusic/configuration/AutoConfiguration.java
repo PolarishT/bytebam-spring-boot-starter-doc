@@ -1,6 +1,6 @@
-package com.bytebam.configuration;
+package com.netease.cloudmusic.configuration;
 
-import com.bytebam.properties.DocProperties;
+import com.netease.cloudmusic.properties.DocProperties;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -24,7 +24,7 @@ public class AutoConfiguration {
     }
 
     @Bean
-    public OpenAPI openAPI(){
+    public OpenAPI openAPI() {
         return new OpenAPI()
                 .info(apiInfo())
                 .externalDocs(new ExternalDocumentation()
@@ -33,7 +33,7 @@ public class AutoConfiguration {
                 );
     }
 
-    private Info apiInfo(){
+    private Info apiInfo() {
         return new Info()
                 .title(properties.getTitle())
                 .description(properties.getDescription())
@@ -42,7 +42,7 @@ public class AutoConfiguration {
                         .name(properties.getAuthor())
                         .url(properties.getUrl())
                         .email(properties.getEmail()
-                ))
+                        ))
                 .license(new License()
                         .name("许可协议")
                         .url("www.bytebam.com")

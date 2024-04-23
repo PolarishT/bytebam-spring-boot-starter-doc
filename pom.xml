@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bytebam</groupId>
-    <artifactId>bytebam-spring-boot-starter-doc</artifactId>
+    <groupId>com.netease.cloudmusic</groupId>
+    <artifactId>music-alg-spring-boot-starter-doc-SNAPSHOT</artifactId>
     <version>1.0.0</version>
-    <description>bytebam-spring-boot-starter-doc</description>
-    <url>https://github.com</url>
+    <description>music-alg-spring-boot-starter-doc</description>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
@@ -56,6 +56,7 @@
                 </includes>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -69,13 +70,99 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>20</source>
+                    <target>20</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
                 <configuration>
-                    <skip>true</skip>
+                    <skipTests>true</skipTests>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <aggregate>true</aggregate>
+                    <charset>UTF-8</charset>
+                    <docencoding>UTF-8</docencoding>
+                    <failOnError>false</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>snapshots</id>
+            <url>http://mvn.hz.netease.com/artifactory/libs-snapshots</url>
+        </repository>
+        <repository>
+            <id>releases</id>
+            <url>http://mvn.hz.netease.com/artifactory/libs-releases</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Netease Releases</name>
+            <url>http://mvn.hz.netease.com/artifactory/libs-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Netease Snapshots</name>
+            <url>http://mvn.hz.netease.com/artifactory/libs-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
